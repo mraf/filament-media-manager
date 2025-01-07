@@ -23,7 +23,8 @@ class CreateMediaAction
                     ->maxSize('100000')
                     ->columnSpanFull()
                     ->required()
-                    ->storeFiles(false),
+                    ->storeFiles(false)
+                    ->multiple(),
                 Forms\Components\TextInput::make('title')
                     ->label(trans('filament-media-manager::messages.media.actions.create.form.title'))
                     ->columnSpanFull(),
