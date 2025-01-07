@@ -36,22 +36,25 @@ class CreateMediaAction
                 $folder = Folder::find($folder_id);
                 if($folder){
                     if($folder->model){
-                        $folder->model->addMedia($data['file'])
-                            ->withCustomProperties([
-                                'title' => $data['title'],
-                                'description' => $data['description']
-                            ])
-                            ->toMediaCollection($folder->collection);
+                        foreach ($data['file'] as $file) {
+                            $folder->model->addMedia($file)
+                                ->withCustomProperties([
+                                    'title' => $data['title'],
+                                    'description' => $data['description']
+                                ])
+                                ->toMediaCollection($folder->collection);
+                        }
                     }
                     else {
-                        $folder->addMedia($data['file'])
-                            ->withCustomProperties([
-                                'title' => $data['title'],
-                                'description' => $data['description']
-                            ])
-                            ->toMediaCollection($folder->collection);
+                        foreach ($data['file'] as $file) {
+                            $folder->addMedia($file)
+                                ->withCustomProperties([
+                                    'title' => $data['title'],
+                                    'description' => $data['description']
+                                ])
+                                ->toMediaCollection($folder->collection);
+                        }
                     }
-
                 }
 
                 Notification::make()->title(trans('filament-media-manager::messages.media.notifications.create-media'))->send();
