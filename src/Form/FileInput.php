@@ -15,6 +15,8 @@ class FileInput extends SpatieMediaLibraryFileUpload
     {
         parent::setUp();
 
+        $this->setUpMultipleFileUpload();
+
         $this->loadStateFromRelationshipsUsing(static function (FileInput $component, HasMedia $record): void {
             /** @var Model&HasMedia $record */
             $media = $record->media()->where('uuid', $component->getState())->get()
@@ -44,5 +46,10 @@ class FileInput extends SpatieMediaLibraryFileUpload
         $this->reorderUploadedFilesUsing(static function (SpatieMediaLibraryFileUpload $component, ?Model $record, array $state): array {
 
         });
+    }
+
+    protected function setUpMultipleFileUpload(): void
+    {
+        $this->multiple();
     }
 }
