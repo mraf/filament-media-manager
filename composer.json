@@ -12,7 +12,6 @@
         "media-library"
     ],
     "license": "MIT",
-    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "TomatoPHP\\FilamentMediaManager\\": "src/"
